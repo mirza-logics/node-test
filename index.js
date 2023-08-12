@@ -32,6 +32,10 @@ const models = {}
 // mongoose.connect('mongodb://127.0.0.1:27017/stream');
 mongoose.connect('mongodb+srv://maliworks:Yourgroup1@cluster0.jt1le6n.mongodb.net/?retryWrites=true&w=majority')
 
+app.get('/', (req,res) => {
+    res.send('hi')
+})
+
 app.post('/login', async (req, res) => {
     const {user_name, password} = req.body
     const user = await User.findOne({email: user_name, password})
@@ -111,5 +115,5 @@ io.on('connection', socket => {
 })
 
 
-const PORT = process.env.PORT || 5000
+const PORT = 5000
 httpServer.listen(PORT, () => console.log(`api running on port: ${PORT}`))
